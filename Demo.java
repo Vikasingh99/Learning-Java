@@ -541,29 +541,83 @@ str.length() - 1
 That's an important programming habit.
 */
 
-public class Demo {
-    public static void main(String[] args) {
 
-        String name = "Java Programming";
 
-        // 1. Length
-        System.out.println(name.length());
+// public class Demo {
+//     public static void main(String[] args) {
 
-        // 2. First character
-        System.out.println(name.charAt(0));
+//         String name = "Java Programming";
 
-        // 3. Last character
-        System.out.println(name.charAt(name.length() - 1));
+//         // 1. Length
+//         System.out.println(name.length());
 
-        // 4. Uppercase
-        System.out.println(name.toUpperCase());
+//         // 2. First character
+//         System.out.println(name.charAt(0));
 
-        // 5. Lowercase
-        System.out.println(name.toLowerCase());
+//         // 3. Last character
+//         System.out.println(name.charAt(name.length() - 1));
 
-        // 6. Print every character
-        for (int i = 0; i < name.length(); i++) {
-            System.out.println(name.charAt(i));
-        }
+//         // 4. Uppercase
+//         System.out.println(name.toUpperCase());
+
+//         // 5. Lowercase
+//         System.out.println(name.toLowerCase());
+
+//         // 6. Print every character
+//         for (int i = 0; i < name.length(); i++) {
+//             System.out.println(name.charAt(i));
+//         }
+//     }
+// }
+
+
+
+//========================> String Buffer & String Builder <========================
+/*
+- StringBuffer and StringBuilder are classes in Java 
+that are used to create mutable (modifiable) strings.
+
+*/
+// class Demo{
+    
+//     public static void main(String[] args) {
+//         StringBuffer sb = new StringBuffer("Hello");
+//         sb.append(" World");
+//         System.out.println(sb); // Output: Hello World
+
+//         StringBuilder sbd = new StringBuilder("Java");
+//         sbd.append(" Programming");
+//         System.out.println(sbd); // Output: Java Programming
+//     }
+// }
+
+
+// ==========================> Encapsulation <=======================================
+
+class Human{
+    
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String n) {
+        name = n;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int a) {
+        age = a;
+    }
+    public static void main(String[] args){
+        Human obj = new Human();
+        obj.setName("Vikas");
+        obj.setAge(25);
+        System.out.println(obj.getName() + " : " + obj.getAge());
     }
 }
