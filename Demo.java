@@ -577,6 +577,15 @@ That's an important programming habit.
 - StringBuffer and StringBuilder are classes in Java 
 that are used to create mutable (modifiable) strings.
 
+
+| Feature                     | String              | StringBuffer                           | StringBuilder           |
+| --------------------------- | ------------------- | -------------------------------------- | ----------------------- |
+| Mutable?                    | No                  | Yes                                    | Yes                     |
+| Can append/change contents? | Not directly        | Yes                                    | Yes                     |
+| Synchronization             | Not applicable      | Synchronized                           | Not synchronized        |
+| Common use                  | General text values | Shared text with synchronization needs | Efficient text building |
+
+
 */
 // class Demo{
     
@@ -592,32 +601,204 @@ that are used to create mutable (modifiable) strings.
 // }
 
 
+
 // ==========================> Encapsulation <=======================================
 
-class Human{
+// class Human{
     
-    private String name;
-    private int age;
+//     private String name;
+//     private int age;
 
-    public String getName() {
-        return name;
-    }
+//     public String getName() {
+//         return name;
+//     }
 
-    public void setName(String n) {
-        name = n;
-    }
+//     public void setName(String n) {
+//         name = n;
+//     }
 
-    public int getAge() {
-        return age;
-    }
+//     public int getAge() {
+//         return age;
+//     }
 
-    public void setAge(int a) {
-        age = a;
-    }
-    public static void main(String[] args){
-        Human obj = new Human();
-        obj.setName("Vikas");
-        obj.setAge(25);
-        System.out.println(obj.getName() + " : " + obj.getAge());
-    }
-}
+//     public void setAge(int a) {
+//         age = a;
+//     }
+//     public static void main(String[] args){
+//         Human obj = new Human();
+//         obj.setName("Vikas");
+//         obj.setAge(25);
+//         System.out.println(obj.getName() + " : " + obj.getAge());
+//     }
+// }
+
+// ====================== Getters and Setters ==========================
+/*
+- Getters and Setters are methods that allow controlled access to the private fields 
+of a class.
+
+- Getters (also known as accessors) are methods that retrieve the value of a private field.
+- Setters (also known as mutators) are methods that set or update the value of a private field.
+- this keyword is used to refer to the current instance of the class.
+
+*/
+
+// class Person{
+//     private int age;
+//     private String name;
+
+//     public int getAge() {
+//         return age;
+//     }
+
+//     public void setAge(int age) {
+//         this.age = age;
+//     }
+
+//     public String getName() {
+//         return name;
+//     }
+
+//     public void setName(String name) {
+//         this.name = name;
+//     }
+
+//     public static void main(String[] args) {
+//         Person obj = new Person();
+//         obj.setName("Vikas");
+//         obj.setAge(30);
+//         System.out.println(obj.getName() + " : " + obj.getAge());
+//     }
+// }
+
+
+//===================================> Constructor <========================================
+/* 
+- A constructor is a special method in Java that is used to initialize objects.
+- It has the same name as the class and does not have a return type, not even void.
+- Constructors are called when an object of a class is created.
+
+*/
+
+// class ConstructorDemo{
+    
+//     private String name;
+//     private int age;
+
+//     // Constructor
+//     public ConstructorDemo() {          // default constructor
+//         name = "Abhishek";
+//         age = 28;
+//     }
+
+//     public ConstructorDemo(String name, int age) {      // parameterized constructor
+//         this.name = name;
+//         this.age = age;
+//     }
+
+//     public String getName() {
+//         return name;
+//     }
+
+//     public void setName(String name) {
+//         this.name = name;
+//     }
+
+//     public int getAge() {
+//         return age;
+//     }
+
+//     public void setAge(int age) {
+//         this.age = age;
+//     }
+
+//     public static void main(String[] args) {
+//         ConstructorDemo obj = new ConstructorDemo();
+//         ConstructorDemo obj1 = new ConstructorDemo("Vikas", 25);
+//         System.out.println(obj.getName() + " : " + obj.getAge());
+//         System.out.println(obj1.getName() + " : " + obj1.getAge());
+//     }
+// }
+
+// ========================> Default vs Parameterized Constructor <====================
+
+/*
+
+- Default Constructor: A default constructor is a constructor that takes no arguments. 
+- It is automatically provided by the Java compiler if no constructors are explicitly defined in the class. 
+- Its primary purpose is to initialize objects with default values.
+
+*/
+
+
+// class Default_VS_ParameterizedConstructor{
+//     String name;
+//     int age;
+//     public String getName() {
+//         return name;
+//     }
+//     public void setName(String name) {
+//         this.name = name;
+//     }
+//     public int getAge() {
+//         return age;
+//     }
+//     public void setAge(int age) {
+//         this.age = age;
+//     }
+//     public Default_VS_ParameterizedConstructor(){
+//         name = "John";
+//         age = 12;
+//     }
+
+//     public Default_VS_ParameterizedConstructor(String name, int age) {
+//         this.name = name;
+//         this.age = age;
+//     }
+//     public static void main(String[] args) {
+//         Default_VS_ParameterizedConstructor obj = new Default_VS_ParameterizedConstructor();
+//         System.out.println(obj.name + " : " + obj.age);
+//     }   
+// }
+
+
+//=========================> Static Variables <==============================
+
+/*
+
+- Static variables, also known as class variables, 
+are shared among all instances of a class.
+- They are declared using the static keyword and belong to the class 
+rather than any specific object.
+
+*/
+
+
+// class Mobile{
+//     static String brand;   //These are instance variables
+//     int price;      // Every object of the class will have its own copy of these variables
+//     String name;
+
+//     public void show(){
+//         System.out.println(brand + " : " + name + " : " + price);
+//     }
+
+//     public static void main(String[] args) {
+
+//         Mobile obj = new Mobile(); // Creating an object of the Mobile class
+
+//         Mobile.brand = "Apple"; // Accessing static variable through class name
+//         obj.price = 110999;
+//         obj.name = "iPhone 13";
+
+//         Mobile obj2 = new Mobile(); // Creating another object of the Mobile class
+
+//         Mobile.brand = "Apple"; // Accessing static variable through class name
+//         obj2.price = 129000;
+//         obj2.name = "iPhone 16 Pro";
+
+//         obj.show();
+//         obj2.show();
+//     }
+// }
+
