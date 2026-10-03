@@ -671,6 +671,93 @@ of a class.
 //     }
 // }
 
+// ===========================> Encapsulation(Setter + Getter) <=========================
+
+/*
+- Encapsulation is a fundamental concept in object-oriented programming (OOP) 
+that involves bundling data (attributes) and methods (functions) 
+that operate on that data into a single unit, typically a class. 
+It restricts direct access to some of the object's components, 
+which can prevent the accidental modification of data.
+
+- The below example demonstrates encapsulation by keeping the balance field private 
+and providing public methods to set and get its value.
+The setter method includes validation to ensure that the balance 
+cannot be set to a negative value, thus protecting the integrity of the data.
+
+*/
+
+// class BankAccount {
+
+//     private double balance;
+
+//     public void setBalance(double balance) {
+
+//         if (balance >= 0) {
+//             this.balance = balance;
+//         } else {
+//             System.out.println("Invalid balance");
+//         }
+//     }
+
+//     public double getBalance() {
+//         return balance;
+//     }
+// }
+
+// public class Main {
+//     public static void main(String[] args) {
+
+//         BankAccount account = new BankAccount();
+
+//         account.setBalance(5000);
+//         System.out.println(account.getBalance());
+
+//         account.setBalance(-1000);
+//         System.out.println(account.getBalance());
+//     }
+// }
+
+
+//================> Example-2 {Encapsulation(Setter + Getter) } <========================
+
+// class Employee {
+
+//     private String name;
+//     private double salary;
+
+//     public String getName() {
+//         return name;
+//     }
+
+//     public void setName(String name) {
+//         this.name = name;
+//     }
+
+//     public double getSalary() {
+//         return salary;
+//     }
+
+//     public void setSalary(double salary) {
+//         if (salary >= 0) {
+//             this.salary = salary;
+//         }
+//     }
+// }
+
+// public class Main {
+
+//     public static void main(String[] args) {
+
+//         Employee emp = new Employee();
+
+//         emp.setName("Rahul");
+//         emp.setSalary(50000);
+
+//         System.out.println(emp.getName());
+//         System.out.println(emp.getSalary());
+//     }
+// }
 
 //===================================> Constructor <========================================
 /* 
