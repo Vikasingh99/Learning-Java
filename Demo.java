@@ -848,6 +848,38 @@ cannot be set to a negative value, thus protecting the integrity of the data.
 //     }   
 // }
 
+//========================> Example-2 {Default vs Parameterized Constructor} <========================
+
+/* 
+class Student {
+    private String name;  // name is private, so it can only be accessed within the Student class
+    private int age;      // age is private, so it can only be accessed within the Student class
+
+    public Student() {
+        name = "Unknown";
+        age = 0;
+    }
+    
+    public Student(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    public void showDetails(){ // This method is public, so it can be called from outside the Student class
+        System.out.println(name + " : "+ age);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Student s1 = new Student();
+        Student s2 = new Student("Rahul", 25);
+        s1.showDetails(); // This will print "Unknown : 0" because s1 was created using the default constructor
+        s2.showDetails(); // This will print "Rahul : 25" because s2 was created using the parameterized constructor
+    }
+}
+
+*/
 
 //=========================> Static Variables <==============================
 
@@ -889,3 +921,280 @@ rather than any specific object.
 //     }
 // }
 
+
+// ===================> Example-2 {Static Variables} <========================
+
+/*
+
+- What is the difference between an instance variable and a static variable?
+1. Start with a Student example
+
+Suppose we have:
+        class Student {
+
+            String name;
+            int age;
+        }
+
+Then we create:
+
+        Student s1 = new Student();
+        Student s2 = new Student();
+        Student s3 = new Student();
+
+Each object has its own name and age.
+Conceptually:
+        Student #1
+        name = Rahul
+        age  = 25
+
+        Student #2
+        name = Amit
+        age  = 22
+
+        Student #3
+        name = Priya
+        age  = 24
+That's what an instance variable means.
+
+2. But what about a value shared by ALL students?
+  =>  Suppose every Student belongs to the same college:
+            College = LPU
+
+Do we really need:
+        Student #1 → college = LPU
+        Student #2 → college = LPU
+        Student #3 → college = LPU
+    as separate instance fields?
+Conceptually, no.
+
+- The college value belongs to the class as a whole, not to one particular Student object.
+
+That's where static comes in.
+
+        class Student {
+            String name;
+            int age;
+            static String college = "LPU";
+        }
+
+Instance variables
+→ belong to each object
+
+Static variable
+→ belongs to the class
+
+3. Visualize the difference:
+
+                 Student class
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+      static college            instance data
+          │                         │
+        "LPU"                  ┌────┼────┐
+                               ↓    ↓    ↓
+                             s1   s2   s3
+
+More concretely:
+
+Student class
+
+static college = "LPU"
+       │
+       ├──────── shared by s1
+       ├──────── shared by s2
+       └──────── shared by s3
+
+
+s1 → Student object
+     name = Rahul
+     age = 25
+
+s2 → Student object
+     name = Amit
+     age = 22
+
+s3 → Student object
+     name = Priya
+     age = 24
+
+The key idea is:
+    One static variable is associated with the class, 
+    while each object has its own instance variables.
+
+*/
+
+// Example program:
+
+// class Student {
+
+//     String name;
+//     int age;
+
+//     static String college = "LPU";
+// }
+
+// class Demo {
+//     public static void main(String[] args) {
+
+//         Student s1 = new Student();
+//         s1.name = "Rahul";
+//         s1.age = 25;
+
+//         Student s2 = new Student();
+//         s2.name = "Amit";
+//         s2.age = 22;
+
+//         System.out.println(s1.name);
+//         System.out.println(s1.age);
+//         System.out.println(s1.college);
+
+//         System.out.println(s2.name);
+//         System.out.println(s2.age);
+//         System.out.println(s2.college);
+//     }
+// }
+
+
+
+/* Output:
+
+        Rahul
+        25
+        LPU
+        Amit
+        22
+        LPU
+
+Both objects can access the same static variable.
+
+Change the static variable:
+
+    - This is where you'll really see the difference.
+
+Student.college = "ABC University";
+
+Now:
+    s1.college → ABC University
+    s2.college → ABC University
+
+Why?
+
+Because there is one shared static variable.
+
+Conceptually:
+
+        Student.college
+            ↓
+        "ABC University"
+
+        s1 ────┐
+            │
+        s2 ────┤
+            │
+        s3 ────┘
+            │
+            └──> same static value
+
+
+- Compare instance vs static
+
+This is the table I want you to understand:
+
+| Variable         | Belongs to  | Number of copies |
+| ---------------- | ----------- | ---------------: |
+| `name`           | Each object |   One per object |
+| `age`            | Each object |   One per object |
+| `static college` | Class       |           Shared |
+
+
+*/
+
+// ====================> Inheritance <========================
+/*
+~ Inheritance is a fundamental concept in object-oriented programming (OOP) 
+that allows a class (called the child or subclass) 
+to inherit properties and behaviors (fields and methods) 
+from another class (called the parent or superclass).
+
+~ Calling the parent class's methods and fields from the child class is done using the `extends` keyword in Java.
+*/
+
+class Demo{
+    public static void main(String[] args){
+        advcalculator obj = new advcalculator(); // Creating an object of the advcalculator class, which inherits from Calc
+        int result1 = obj.add(10, 15);
+        int result2 = obj.subtract(20, 5);
+        int result3 = obj.multiply(5, 4);
+        int result4 = obj.divide(10, 5);
+        System.out.println(result1 + " " + result2 + " " + result3 + " " + result4);
+    }
+}
+
+
+//================ this and super method =================================
+
+// class A{
+//     public A()
+//     {
+//         super(); // Calls Object's constructor
+//         System.out.println("This is class A");
+//     }
+//     public A(int a)
+//     {
+//         super(); // Calls Object's parameterized constructor
+//         System.out.println("This is class A with parameter: " + a);
+//     }
+// }
+// class B extends A{
+//     public B()
+//     {
+//         super(); // Calls A's no-argument constructor
+//         System.out.println("This is class B");
+//     }
+//     public B(int b)
+//     {
+//         super(b); // Calls A's parameterized constructor
+//         System.out.println("This is class B with parameter: " + b);
+//     }
+// }
+// public class Demo{
+//     public static void main(String[] args){
+//         B obj = new B();
+//     }
+// }
+
+
+// =========================> Example-2 {this and super class} <========================
+
+
+class A{
+    public A()
+    {
+        super(); // Calls Object's constructor
+        System.out.println("This is class A");
+    }
+    public A(int a)
+    {
+        super(); // Calls Object's parameterized constructor
+        System.out.println("This is class A with parameter: " + a);
+    }
+}
+class B extends A{
+    public B()
+    {
+        super(); // Calls A's no-argument constructor
+        System.out.println("This is class B");
+    }
+    public B(int b)
+    {
+        this(); // Calls A's parameterized constructor
+        System.out.println("This is class B with parameter: " + b);
+    }
+}
+public class Demo{
+    public static void main(String[] args){
+        B obj = new B(5);
+    }
+}
