@@ -1121,16 +1121,222 @@ from another class (called the parent or superclass).
 ~ Calling the parent class's methods and fields from the child class is done using the `extends` keyword in Java.
 */
 
-class Demo{
-    public static void main(String[] args){
-        advcalculator obj = new advcalculator(); // Creating an object of the advcalculator class, which inherits from Calc
-        int result1 = obj.add(10, 15);
-        int result2 = obj.subtract(20, 5);
-        int result3 = obj.multiply(5, 4);
-        int result4 = obj.divide(10, 5);
-        System.out.println(result1 + " " + result2 + " " + result3 + " " + result4);
+// class Demo{
+//     public static void main(String[] args){
+//         advcalculator obj = new advcalculator(); // Creating an object of the advcalculator class, which inherits from Calc
+//         int result1 = obj.add(10, 15);
+//         int result2 = obj.subtract(20, 5);
+//         int result3 = obj.multiply(5, 4);
+//         int result4 = obj.divide(10, 5);
+//         System.out.println(result1 + " " + result2 + " " + result3 + " " + result4);
+//     }
+// }
+// ========================> Inheritance in deep <========================
+
+/* 
+
+- Suppose we have:
+
+class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int subtract(int a, int b) {
+        return a - b;
     }
 }
+
+Now suppose we want an Advanced Calculator.
+
+It should have:
+
+        add()
+        subtract()
+        multiply()
+        divide()
+
+We could write everything again:
+
+class AdvCalculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int subtract(int a, int b) {
+        return a - b;
+    }
+
+    int multiply(int a, int b) {
+        return a * b;
+    }
+
+    int divide(int a, int b) {
+        return a / b;
+    }
+}
+
+But notice the problem.
+
+We duplicated:
+        add()
+        subtract()
+
+That's unnecessary code.
+
+Could AdvCalculator reuse the functionality already written in Calculator?
+
+Yes.
+
+That's inheritance.
+
+- Calculator is the parent class, also called the superclass.
+- AdvCalculator is the child class, also called the subclass.
+
+- Visualize It
+
+Think of Calculator as the base:
+
+        Calculator
+        ├── add()
+        └── subtract()
+
+Then AdvCalculator extends it:
+
+        AdvCalculator
+        ├── inherited add()
+        ├── inherited subtract()
+        ├── multiply()
+        └── divide()
+
+So the child gets the parent's accessible behavior and can add its own.
+
+- Is inheritance copying the methods?
+
+Don't think:
+
+"AdvCalculator physically copies the methods into itself."
+
+For learning, say:
+
+"AdvCalculator inherits the accessible members of Calculator and can use them."
+
+The exact JVM/object-model details are more nuanced.
+
+
+
+*/
+
+// class Calculator {
+
+//     int add(int a, int b) {
+//         return a + b;
+//     }
+
+//     int subtract(int a, int b) {
+//         return a - b;
+//     }
+// }
+
+// class AdvCalculator extends Calculator {
+
+//     int multiply(int a, int b) {
+//         return a * b;
+//     }
+
+//     int divide(int a, int b) {
+//         return a / b;
+//     }
+// }
+
+// public class Demo {
+
+//     public static void main(String[] args) {
+
+//         AdvCalculator obj = new AdvCalculator();
+
+//         System.out.println("Addition from Parent : "+obj.add(10, 15));
+//         System.out.println("Subtraction from Parent : "+obj.subtract(20, 5));
+//         System.out.println("Multiplication from Child : "+obj.multiply(5, 4));
+//         System.out.println("Division from Child : "+obj.divide(10, 5));
+//     }
+// }
+
+//=========================> Multilevel Inheritance <========================
+
+/*
+Grandparent
+    ↑
+    |
+  Parent
+    ↑
+    |
+   Child
+*/
+
+// class Animal {
+
+//     void eat() {
+//         System.out.println("Eating");
+//     }
+// }
+
+// class Dog extends Animal {
+
+//     void bark() {
+//         System.out.println("Barking");
+//     }
+// }
+
+// class Puppy extends Dog {
+
+//     void cry() {
+//         System.out.println("Crying");
+//     }
+// }
+// class Demo{
+//         public static void main(String[] args){
+//             Puppy p = new Puppy();
+//             p.eat();
+//             p.bark();
+//             p.cry();
+//         } // Puppy inherits from Dog, and Dog inherits from Animal.
+//     } // This is multilevel inheritance.
+
+
+// =================> Example-2 {Multilevel Inheritance} <========================
+
+
+// class GrandParent {
+//     void eat() {
+//         System.out.println("Eating");
+//     }
+// }
+
+// class Parent extends GrandParent {
+//     void walk() {
+//         System.out.println("Walking");
+//     }
+// }
+
+// class Child extends Parent {
+//     void talk() {
+//         System.out.println("Talking");
+//     }
+// }
+
+// public class Demo {
+
+//     public static void main(String[] args) {
+
+//         Child ch = new Child();
+//         ch.eat();
+//         ch.walk();
+//         ch.talk();
+//     }
+// }
 
 
 //================ this and super method =================================
@@ -1169,32 +1375,139 @@ class Demo{
 // =========================> Example-2 {this and super class} <========================
 
 
-class A{
-    public A()
-    {
-        super(); // Calls Object's constructor
-        System.out.println("This is class A");
-    }
-    public A(int a)
-    {
-        super(); // Calls Object's parameterized constructor
-        System.out.println("This is class A with parameter: " + a);
-    }
-}
-class B extends A{
-    public B()
-    {
-        super(); // Calls A's no-argument constructor
-        System.out.println("This is class B");
-    }
-    public B(int b)
-    {
-        this(); // Calls A's parameterized constructor
-        System.out.println("This is class B with parameter: " + b);
-    }
-}
-public class Demo{
-    public static void main(String[] args){
-        B obj = new B(5);
-    }
-}
+// class A{
+//     public A()
+//     {
+//         super(); // Calls Object's constructor
+//         System.out.println("This is class A");
+//     }
+//     public A(int a)
+//     {
+//         super(); // Calls Object's parameterized constructor
+//         System.out.println("This is class A with parameter: " + a);
+//     }
+// }
+// class B extends A{
+//     public B()
+//     {
+//         super(); // Calls A's no-argument constructor
+//         System.out.println("This is class B");
+//     }
+//     public B(int b)
+//     {
+//         this(); // Calls A's parameterized constructor
+//         System.out.println("This is class B with parameter: " + b);
+//     }
+// }
+// public class Demo{
+//     public static void main(String[] args){
+//         B obj = new B(5);
+//     }
+// }
+
+// ==================> Anonymous Object <========================
+
+/* 
+- An anonymous object is an object that is created without being assigned to a reference variable.
+- It is typically used when you want to create an object and use it immediately, without needing to refer to it later in the code.
+- Anonymous objects are often used for one-time operations, such as passing an object to a method or constructor, or for creating temporary objects in expressions.
+
+~> Now imagine you need an object only once.
+    You don't need to keep a reference to it.
+==> You can create it like:
+    new Calculator().add(10, 20);
+*/
+
+// class Calculator {
+
+//     int add(int a, int b) {
+//         return a + b;
+//     }
+// }
+
+// public class Demo {
+//     public static void main(String[] args) {
+
+//         //new Calculator().add(10, 15); // Anonymous object, but the result is not stored or printed
+//         System.out.println(new Calculator().add(10, 15)); // Anonymous object, result is printed directly
+//     }
+// }
+
+// ========================> Anonymous Object with Constructor <========================
+
+/*
+
+    new Student("Rahul")
+            ↓
+    object created
+            ↓
+    constructor runs
+            ↓
+      name = Rahul
+            ↓
+         show()
+            ↓
+          Rahul
+
+- So the purpose is not "always use anonymous objects." It's:
+- Use an anonymous object when you don't need to retain and reuse the object through a named reference.
+
+*/
+
+
+// class Student {
+
+//     String name;
+
+//     Student(String name) {
+//         this.name = name;
+//     }
+
+//     void show() {
+//         System.out.println(name);
+//     }
+// }
+
+// public class Demo {
+//     public static void main(String[] args) {
+
+//         new Student("Rahul").show(); // This creates an object and immediately invokes the constructor.
+//     }
+// }
+
+
+//=============================> Object vs Anonymous Object <========================
+
+// class Calculator {
+
+//     int add(int a, int b) {
+//         return a + b;
+//     }
+
+//     int multiply(int a, int b) {
+//         return a * b;
+//     }
+// }
+
+// public class Demo {
+
+//     public static void main(String[] args) {
+
+//         // Anonymous object
+//         System.out.println(
+//             "Addition with Anonymous Object: "
+//             + new Calculator().add(10, 5)
+//         );
+
+//         // Named object
+//         Calculator calc = new Calculator();
+
+//         int addition = calc.add(15, 10);
+//         int multiplication = calc.multiply(7, 8);
+
+//         System.out.println("Addition through calc: " + addition);
+//         System.out.println("Multiplication through calc: " + multiplication);
+//     }
+// }
+
+

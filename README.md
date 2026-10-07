@@ -2,9 +2,27 @@
 
 A visual guide to the concepts explored in `Demo.java`, alongside a runnable command-line calculator in `Main.java`.
 
-> Most examples in `Demo.java` are commented out as study notes. The active example is the `Human` class at the bottom, which demonstrates encapsulation.
+## Current project map
 
-## Quick map
+```text
+Demo.java
+├── Commented study notes
+│   ├── Conditions and loops
+│   ├── Methods and OOP
+│   ├── Arrays and matrices
+│   ├── Strings and text operations
+│   └── Encapsulation
+└── Active class: Human
+    └── Demonstrates private fields, getters, and setters
+
+Main.java
+└── Active calculator program
+    └── Adds, subtracts, multiplies, or divides two numbers
+```
+
+> `Demo.java` is primarily a reference file. Its examples are commented out except for the active `Human` class. `Main.java` is the executable calculator.
+
+## Quick visual map
 
 ```text
 Java program
