@@ -6,13 +6,13 @@ A visual guide to the concepts explored in `Demo.java`, alongside a runnable com
 
 ```text
 Demo.java
-├── Commented study notes
+├── Study notes and commented examples
 │   ├── Conditions and loops
 │   ├── Methods and OOP
 │   ├── Arrays and matrices
 │   ├── Strings and text operations
 │   └── Encapsulation
-└── Active class: Human
+└── Human example
     └── Demonstrates private fields, getters, and setters
 
 Main.java
@@ -20,7 +20,7 @@ Main.java
     └── Adds, subtracts, multiplies, or divides two numbers
 ```
 
-> `Demo.java` is primarily a reference file. Its examples are commented out except for the active `Human` class. `Main.java` is the executable calculator.
+> `Demo.java` is primarily a reference file. Its examples may be commented out or enabled for practice. `Main.java` is the executable calculator; the `Human` class is an optional encapsulation example.
 
 ## Quick visual map
 
@@ -265,7 +265,7 @@ obj.getAge()  <───────────────────── �
 						 └────────────────────┘
 ```
 
-Private fields hide the object's internal state. Public getters and setters provide a controlled way to read or update it. The active `Human` example sets and then prints the name and age.
+Private fields hide the object's internal state. Public getters and setters provide a controlled way to read or update it. If the `Human` example is enabled in the current editor, it sets and prints the name and age.
 
 ## Runnable calculator
 
