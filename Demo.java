@@ -1820,6 +1820,19 @@ referring to a child object, the child's overridden implementation can execute.
 
 //=============> Can a child override a static method ? <===================
 
+/*
+
+This is not normal method overriding.
+
+- Static methods are associated with the class, not the object. A static method in the child with the same signature hides the parent static method rather than overriding it in the runtime-polymorphic sense.
+
+We don't need to go deep into method hiding today, but remember:
+
+- instance method → can be overridden
+- static method   → hidden, not overridden
+
+*/
+
 class A {
 
     static void show() {
@@ -1831,5 +1844,14 @@ class B extends A {
 
     static void show() {
         System.out.println("B");
+    }
+}
+class Demo {
+
+    public static void main(String[] args) {
+
+        A a = new B(); // Reference type is A, but the actual object is B.
+
+        a.show(); // This will call A's show() method because static methods are resolved at compile time based on the reference type.
     }
 }
