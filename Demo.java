@@ -1338,6 +1338,44 @@ Grandparent
 //     }
 // }
 
+//=========================> Multiple Inheritance <========================
+/* 
+- In Java, multiple inheritance is not supported with classes to avoid ambiguity and complexity.
+- However, Java supports multiple inheritance through interfaces.
+
+    class  → class       → extends       → only one superclass
+    class  → interface(s) → implements   → multiple interfaces possible
+
+*/
+
+// interface Camera {
+//     void takePhoto();
+// }
+
+// interface GPS {
+//     void navigate();
+// }
+
+// class Smartphone implements Camera, GPS {
+
+//     public void takePhoto() {
+//         System.out.println("Taking photo");
+//     }
+
+//     public void navigate() {
+//         System.out.println("Navigating");
+//     }
+// }
+
+// public class Demo {
+//     public static void main(String[] args) {
+
+//         Smartphone phone = new Smartphone();
+
+//         phone.takePhoto();
+//         phone.navigate();
+//     }
+// }
 
 //================ this and super method =================================
 
@@ -1372,38 +1410,116 @@ Grandparent
 // }
 
 
-// =========================> Example-2 {this and super class} <========================
 
+// ==========================> Example-2 {this and super class} <========================
 
-// class A{
-//     public A()
-//     {
-//         super(); // Calls Object's constructor
+/*
+
+this
+ ↓
+current class/current object {this.x}
+
+super
+ ↓
+parent class {super.x}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| Keyword          | Purpose                           |
+| ---------------- | --------------------------------- |
+| `this.x`         | Current object's field            |
+| `super.x`        | Parent-class field                |
+| `this.method()`  | Current class/object method       |
+| `super.method()` | Parent-class method               |
+| `this()`         | Another constructor in same class |
+| `super()`        | Parent-class constructor          |
+
+*/
+
+// class A {
+//     public A() {
+//         super();
 //         System.out.println("This is class A");
 //     }
-//     public A(int a)
-//     {
-//         super(); // Calls Object's parameterized constructor
+
+//     public A(int a) {
+//         super();
 //         System.out.println("This is class A with parameter: " + a);
 //     }
 // }
-// class B extends A{
-//     public B()
-//     {
-//         super(); // Calls A's no-argument constructor
+
+// class B extends A {
+//     public B() {
+//         super();
 //         System.out.println("This is class B");
 //     }
-//     public B(int b)
-//     {
-//         this(); // Calls A's parameterized constructor
+
+//     public B(int b) {
+//         super(b);
 //         System.out.println("This is class B with parameter: " + b);
 //     }
 // }
-// public class Demo{
+// class Demo{
 //     public static void main(String[] args){
 //         B obj = new B(5);
+        
 //     }
 // }
+
+
+/* 
+- The above code flow is:
+
+            B(int)
+            ↓
+            super(5)
+            ↓
+            A(int)
+            ↓
+            super()
+            ↓
+            Object()
+            ↓
+            A(int) continues
+            ↓
+            B(int) continues
+
+
+==> The Golden Rule:
+
+    Boss, write this mentally:
+
+                this()
+                  ↓
+                SAME CLASS constructor
+
+                super()
+                  ↓
+                PARENT CLASS constructor
+
+                And:
+
+                this.variable
+                  ↓
+                current class/object field
+
+                super.variable
+                  ↓
+                parent field
+
+                And:
+
+                this.method()
+                  ↓
+                current class method
+
+                super.method()
+                  ↓
+                parent method
+
+Once these three pairs are clear, the this + super topic becomes much easier.
+
+*/
+
 
 // ==================> Anonymous Object <========================
 
@@ -1511,3 +1627,57 @@ Grandparent
 // }
 
 
+// =========================> Method Overriding <========================
+
+//Method overriding occurs when a subclass provides its own implementation 
+// of an inherited instance method with the same method signature as the superclass method, subject to Java's overriding rules.
+
+class Animal {
+
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+public class Demo {
+
+    public static void main(String[] args) {
+
+        Dog d = new Dog();
+
+        d.sound();
+    }
+}
+/* Output: Dog barks
+=> Why?
+   -> Because the Dog class has its own implementation of sound().
+
+The child is saying:
+"The parent has a version of this method, but I want my own behavior when this method is used on my object."
+
+So,
+
+        Animal
+        sound()
+          ↓
+        generic behavior
+
+        Dog
+        sound()
+          ↓
+        specific behavior
+*/
+
+//======================> Overloading vs Overriding <========================
+
+/*
+
+
+
+*/
