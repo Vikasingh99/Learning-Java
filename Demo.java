@@ -1632,28 +1632,30 @@ Once these three pairs are clear, the this + super topic becomes much easier.
 //Method overriding occurs when a subclass provides its own implementation 
 // of an inherited instance method with the same method signature as the superclass method, subject to Java's overriding rules.
 
-class Animal {
 
-    void sound() {
-        System.out.println("Animal sound");
-    }
-}
+// class Animal {
 
-class Dog extends Animal {
+//     void sound() {
+//         System.out.println("Animal sound");
+//     }
+// }
 
-    void sound() {
-        System.out.println("Dog barks");
-    }
-}
-public class Demo {
+// class Dog extends Animal {
 
-    public static void main(String[] args) {
+//     void sound() {
+//         System.out.println("Dog barks");
+//     }
+// }
+// public class Demo {
 
-        Dog d = new Dog();
+//     public static void main(String[] args) {
 
-        d.sound();
-    }
-}
+//         Dog d = new Dog();
+
+//         d.sound();
+//     }
+// }
+
 /* Output: Dog barks
 => Why?
    -> Because the Dog class has its own implementation of sound().
@@ -1676,8 +1678,158 @@ So,
 
 //======================> Overloading vs Overriding <========================
 
+
+
+// - Method Overloading
+// Same class typically:
+
+// class Calculator {
+
+//     int add(int a, int b) {
+//         return a + b;
+//     }
+
+//     int add(int a, int b, int c) {
+//         return a + b + c;
+//     }
+// } // Same method name, different parameter list.
+
+// - Method Overriding
+// Parent and child:
+
+// class Animal {
+
+//     void sound() {
+//     }
+// }
+
+// class Dog extends Animal {
+
+//     void sound() {
+//     }
+// } // Same method name and same parameter list.
+
 /*
+~ Overloading
+→ same class
+→ different parameters
 
-
-
+~ Overriding
+→ parent + child
+→ same signature
+→ different implementation
 */
+
+//----------- A basic overriding example ---------------------
+
+
+// class Animal {
+
+//     void sound() {
+//         System.out.println("Animal makes a sound");
+//     }
+// }
+
+// class Dog extends Animal {
+
+//     @Override
+//     void sound() {
+//         System.out.println("Dog barks");
+//     }
+// }
+
+// class Cat extends Animal {
+
+//     @Override
+//     void sound() {
+//         System.out.println("Cat meows");
+//         super.sound(); // Explicitly Calls the parent class's sound() method
+//     }
+// }
+
+// /**
+//  * Same method name but different child implementations.
+//  * This is method overriding.
+//  */
+
+// public class Demo {
+
+//     public static void main(String[] args){
+//         Dog d = new Dog();
+//         Cat c = new Cat();
+
+//         d.sound();
+//         c.sound();
+//     }
+// }
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+this.sound()
+    - Refers to the current object/current class method resolution.
+
+super.sound()
+    - Explicitly refers to the parent's implementation.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+// ===================> Dynamic Method Dispatch <========================
+
+/*
+- Dynamic Method Dispatch (DMD) is a mechanism in Java that allows a method to be called on an object, 
+where the method that gets executed is determined at runtime based on the actual object's type,
+rather than the reference type.
+- This is a key feature of polymorphism in Java, enabling flexibility and extensibility in object-oriented programming.
+- In DMD, a superclass reference variable can refer to a subclass object,
+and when a method is called on that reference,
+the JVM determines which version of the method to execute based on the actual object type at runtime.
+*/
+
+/*
+`````````
+
+- When an overridden instance method is called through a parent reference 
+referring to a child object, the child's overridden implementation can execute.
+
+`````````````
+*/ 
+
+// class Animal {
+
+//     void sound() {
+//         System.out.println("Animal sound");
+//     }
+// }
+
+// class Dog extends Animal {
+
+//     @Override
+//     void sound() {
+//         System.out.println("Dog barks");
+//     }
+// }
+
+// public class Demo {
+
+//     public static void main(String[] args) {
+
+//         Animal a = new Dog(); // Here the reference type is Animal, but the actual object is Dog.
+
+//         a.sound(); // This will call Dog's sound() method due to dynamic method dispatch.
+//     }
+// }
+
+//=============> Can a child override a static method ? <===================
+
+class A {
+
+    static void show() {
+        System.out.println("A");
+    }
+}
+
+class B extends A {
+
+    static void show() {
+        System.out.println("B");
+    }
+}
