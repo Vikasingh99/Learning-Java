@@ -1833,25 +1833,174 @@ We don't need to go deep into method hiding today, but remember:
 
 */
 
-class A {
+// class A {
 
-    static void show() {
-        System.out.println("A");
-    }
-}
+//     static void show() {
+//         System.out.println("A");
+//     }
+// }
 
-class B extends A {
+// class B extends A {
 
-    static void show() {
-        System.out.println("B");
-    }
-}
-class Demo {
+//     static void show() {
+//         System.out.println("B");
+//     }
+// }
+// class Demo {
 
-    public static void main(String[] args) {
+//     public static void main(String[] args) {
 
-        A a = new B(); // Reference type is A, but the actual object is B.
+//         A a = new B(); // Reference type is A, but the actual object is B.
 
-        a.show(); // This will call A's show() method because static methods are resolved at compile time based on the reference type.
-    }
-}
+//         a.show(); // This will call A's show() method because static methods are resolved at compile time based on the reference type.
+//     }
+// }
+
+// ==========> Can private methods be overridden {No}<====================
+
+/*
+B.show() is not overriding A.show().
+
+Why?
+
+- Because the parent's show() is private and is not inherited as an overridable method by the child.
+
+*/
+
+// class A {
+
+//     private void show() {
+//         System.out.println("A");
+//     }
+// }
+
+// class B extends A {
+
+//     void show() {
+//         System.out.println("B");
+//     }
+// }
+// class Demo {
+
+//     public static void main(String[] args) {
+
+//         A a = new B(); // Reference type is A, but the actual object is B.
+
+//         //a.show(); // This will cause a compile-time error because show() in A is private and not visible to B or outside classes.
+//     }
+// }
+
+
+//=========> Can constructors be overridden {No} <================
+
+/* 
+
+- Constructors are not inherited, so they cannot be overridden.
+
+You can overload constructors:
+
+        Student()
+        Student(String name)
+
+- But you cannot override a parent constructor in a child class.
+
+Remember:
+
+        Constructors → overload ✅
+        Constructors → override ❌
+
+*/
+
+// ============================> Return type in Overriding <<==========================
+/* 
+~> This can be valid because String is a subtype of Object. This is called a covariant return type.
+
+remember the simpler rule:
+
+- An overriding method cannot arbitrarily change the return type; 
+a compatible return type is required, including allowed covariant returns.
+
+*/
+
+// class A {
+
+//     Object getValue() {
+//         return "Hello";
+//     }
+// }
+
+// class B extends A {
+
+//     @Override
+//     String getValue() {
+//         return "Hello";
+//     }
+// }
+// class Demo{
+//     public static  void main(String[] args){
+//         B obj = new B();
+//         System.out.println(obj.getValue());
+//     }
+// }
+
+// =================== Overrinding vs Overloading rule ============================
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+| Feature        | Overloading            | Overriding                        |
+| -------------- | ---------------------- | --------------------------------- |
+| Relationship   | Usually same class     | Parent + child                    |
+| Method name    | Same                   | Same                              |
+| Parameters     | Different              | Same                              |
+| Implementation | Usually different      | Child provides new implementation |
+| Main idea      | Different ways to call | Child-specific behavior           |
+| Polymorphism   | Compile-time           | Runtime                           |
+| `@Override`    | No                     | Yes, recommended                  |
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+
+Note:- Overloading is compile-time polymorphism. Overriding participates in runtime polymorphism.
+*/
+
+// ========================> Packages <==============================
+
+/*
+- A package is a namespace used to organize related Java classes, interfaces, and other types.
+
+- Think of it like folders.
+
+            Project
+            │
+            ├── student
+            │   ├── Student.java
+            │   └── StudentService.java
+            │
+            ├── employee
+            │   ├── Employee.java
+            │   └── EmployeeService.java
+            │
+            └── payment
+                ├── Payment.java
+                └── PaymentService.java
+
+Conceptually:
+            package
+            ↓
+            organizes related classes
+
+~~~~~~~~ Creating a package ~~~~~~~~
+Suppose we have:
+            package com.example.student;
+            public class Student {
+
+                public void show() {
+                    System.out.println("Student");
+                }
+            }
+            
+The first line:
+        package com.example.student;
+        declares the package.
+    - It normally appears before imports and before the class declaration.
+
+
+*/

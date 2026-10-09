@@ -4,6 +4,13 @@ This workspace contains Java learning examples and a working command-line calcul
 
 > **Important:** Most examples in [Demo.java](Demo.java) are commented out. Read the examples and uncomment one block at a time. [Main.java](Main.java) is the active calculator program.
 
+## Quick start
+
+1. Open [Main.java](Main.java) to run the calculator.
+2. Open [Demo.java](Demo.java) topic by topic to learn Java concepts.
+3. Uncomment one example block at a time, then compile and run it.
+4. Use the bundled JDK in this workspace for the simplest setup.
+
 ## 1. Project map
 
 ```text
@@ -56,7 +63,37 @@ Start
 ```java
 public class Main {
     public static void main(String[] args) {
-        // The source contains the calculator logic.
+        double num1, num2;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the numbers:");
+        num1 = sc.nextDouble();
+        num2 = sc.nextDouble();
+
+        System.out.println("Enter the operator (+, -, *, /):");
+        char op = sc.next().charAt(0);
+
+        switch (op) {
+            case '+':
+                System.out.println(num1 + num2);
+                break;
+            case '-':
+                System.out.println(num1 - num2);
+                break;
+            case '*':
+                System.out.println(num1 * num2);
+                break;
+            case '/':
+                if (num2 == 0) {
+                    System.out.println("Division by zero is not allowed.");
+                    return;
+                }
+                System.out.println(num1 / num2);
+                break;
+            default:
+                System.out.println("Invalid operator.");
+                return;
+        }
     }
 }
 ```
